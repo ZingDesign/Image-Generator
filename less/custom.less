@@ -1,3 +1,6 @@
+@small: ~"only screen and (min-width: 768px)";
+@retina: ~"only screen and (-webkit-min-device-pixel-ratio: 2),only screen and (min--moz-device-pixel-ratio: 2),only screen and (-o-min-device-pixel-ratio: 2/1),only screen and (min-device-pixel-ratio: 2),only screen and (min-resolution: 192dpi),only screen and (min-resolution: 2dppx)";
+
 #file_drop {
   width: 150px;
   height: 150px;
@@ -11,4 +14,105 @@
 
 #carbonads-container {
   display: none;
+}
+
+@cblue: cornflowerblue;
+
+.arrow {
+  color: @cblue;
+  &:before {
+//    content: "\2192";
+    content: "\2190";
+    margin-right: .5em;
+  }
+  &:hover {
+    color: darken(@cblue, 10%);
+  }
+}
+
+.arrow-button {
+  .arrow;
+  cursor: pointer;
+  background-color: lighten(@cblue, 20%);
+  padding: 1em;
+  border-bottom: 2px solid @cblue;
+  @media @small {
+    display:  inline-block;
+  }
+}
+
+.looper (@i) when (@i > 0) {
+  .image-class-@{i} {
+    background: url("../img/@{i}.png") no-repeat;
+  }
+
+  .looper(@i - 1);
+}
+
+.looper(0);
+
+.looper(10);
+
+//Outputs:
+//.image-class-10 {
+//  background: url("../img/10.png") no-repeat;
+//}
+//
+//.image-class-9 {
+//  background: url("../img/9.png") no-repeat;
+//}
+//
+//.image-class-8 {
+//  background: url("../img/8.png") no-repeat;
+//}
+//...
+
+.lightswitch(@colour) when (lightness(@colour) > 40%) {
+  color: @colour;
+  background-color: #000;
+  .box-shadow(0 3px 4px #ddd);
+}
+.lightswitch(@colour) when (lightness(@colour) < 41%) {
+  color: @colour;
+  background-color: #fff;
+  .box-shadow(0 1px 1px rgba(0,0,0,0.3));
+}
+
+.draw-a-circle(@radius) {
+  border-radius: @radius;
+  @diameter: (@radius * 2);
+  height: @diameter;
+  width: @diameter;
+}
+
+.draw-circle(@radius) when (@radius < 10) {
+  .draw-a-circle(@radius);
+}
+.draw-circle(@radius) when (@radius > 10) {
+  .draw-a-circle(@radius);
+  @font-size: 12px;
+  text-align: center;
+  font-size: @font-size;
+  padding: (@radius / 2) 10px;
+}
+
+.circle1 {
+  .draw-circle(7px);
+  .lightswitch(#f60);
+}
+
+.circle2 {
+  .draw-circle(28px);
+  .lightswitch(#def);
+}
+
+.circle3 {
+  .draw-circle(36px);
+  .lightswitch(limegreen);
+}
+
+@em-base: 16px;
+.emCalc(@pxWidth) {
+  //return @pxWidth / @em-base * 1em;
+  font-size: @pxWidth / @em-base * 1em;
 }
