@@ -1,0 +1,94 @@
+---
+layout: basic
+title: The ultimate image optimiser for designers
+slug: img-gen
+base_url: "../"
+---
+
+<main class="bs-masthead" role="main">
+    <div class="container">
+        <!--<h2>The ultimate image tool for designers</h2>-->
+
+        <div class="row">
+            <div class="col-md-6">
+                <form action="file-upload.php" class="dropzone square" id="my-awesome-dropzone">
+
+                    <div class="fallback">
+                        <input type="file" name="file" />
+                    </div>
+
+                </form>
+            </div>
+
+
+
+            <form id="img-config" class="col-md-6" role="form" action="file-upload.php" method="post">
+                <p><strong>Device width(s) to support:</strong></p>
+                <div class="form-group">
+                    <label>
+                        <input type="checkbox" name="img_sizes[]" value="290" checked /> 290px
+                    </label>
+                    <label>
+                        <input type="checkbox" name="img_sizes[]" value="450" checked /> 450px
+                    </label>
+                </div>
+                <div class="form-group">
+                    <label>
+                        <input type="checkbox" name="img_sizes[]" value="690" checked /> 690px
+                    </label>
+                    <label>
+                        <input type="checkbox" name="img_sizes[]" value="768" checked /> 768px
+                    </label>
+                </div>
+                <div class="form-group">
+                    <label>
+                        <input type="checkbox" name="img_sizes[]" value="960" checked /> 960px
+                    </label>
+                    <label>
+                        <input type="checkbox" name="img_sizes[]" value="1200" checked /> 1200px
+                    </label>
+                </div>
+                <div class="form-group">
+                    <label>Custom device width:</label>
+                    <input type="text" name="custom_size" value="" />
+                </div>
+                <div class="form-group">
+                    <label>
+                        <input type="checkbox" name="retina" value="1" checked />
+                        Retinafy
+                    </label>
+                </div>
+                <div class="form-group">
+                    <label>
+                        <input type="checkbox" name="compress" value="1" checked /> Compress
+                    </label>
+                    <a class="help-message" href="#" data-toggle="tooltip" title="Compress all uncompressed PNG and JPEG
+                images">?</a>
+                </div>
+                <div class="form-group">
+                    <label>
+                        <input type="checkbox" name="separate_folders" value="1" checked /> Separate folders
+                    </label>
+                    <a class="help-message" href="#" data-toggle="tooltip" title="Tick this box if you would
+                    like all your images in separate folders with names based on their image width">?</a>
+                </div>
+                <input type="hidden" name="ajax_submit" value="1" />
+                <p>
+                    <input type="button" class="btn btn-default" name="preview" value="Preview" />
+                    <input type="submit" class="btn btn-primary" name="generate" value="Generate!" />
+                </p>
+
+            </form>
+
+        </div> <!-- .row -->
+
+        <div class="row">
+            <div id="preview-box" class="col-md-12">
+
+            </div> <!-- #preview-box -->
+        </div> <!-- .row -->
+
+
+    </div> <!-- .container -->
+
+</main>

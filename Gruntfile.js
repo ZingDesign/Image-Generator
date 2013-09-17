@@ -54,7 +54,7 @@ module.exports = function(grunt) {
           'js/scrollspy.js',
           'js/tab.js',
           'js/affix.js',
-            'js/custom.js'
+          'js/custom.js'
         ],
         dest: 'dist/js/<%= pkg.name %>.js'
       }
@@ -136,14 +136,14 @@ module.exports = function(grunt) {
     },
 
     watch: {
-//      src: {
-//        files: '<%= jshint.src.src %>',
-//        tasks: ['jshint:src', 'qunit']
-//      },
-//      test: {
-//        files: '<%= jshint.test.src %>',
-//        tasks: ['jshint:test', 'qunit']
-//      },
+      src: {
+        files: '<%= jshint.src.src %>',
+        tasks: ['jshint:src']
+      },
+      test: {
+        files: '<%= jshint.test.src %>',
+        tasks: ['jshint:test']
+      },
       concat: {
         files: 'js/*.js',
         tasks: ['concat']
@@ -157,7 +157,7 @@ module.exports = function(grunt) {
         tasks: ['recess']
       },
       jekyll: {
-          files: ['dist/css/<%= pkg.name %>.css', '*.html', '*.php', 'libs/**/*.php', 'dist/js/<%= pkg.name %>.js'],
+          files: ['dist/css/<%= pkg.name %>.css', 'dist/js/<%= pkg.name %>.js'],
           tasks: ['jekyll']
       }
     }
@@ -182,7 +182,7 @@ module.exports = function(grunt) {
   grunt.registerTask('validate-html', ['jekyll', 'validation']);
 
   // Test task.
-  var testSubtasks = ['dist-css', 'jshint', 'qunit', 'validate-html'];
+  var testSubtasks = ['dist-css', 'jshint', 'validate-html'];
   // Only run BrowserStack tests under Travis
   if (process.env.TRAVIS) {
     // Only run BrowserStack tests if this is a mainline commit in twbs/bootstrap, or you have your own BrowserStack key
